@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.springboot.model.User;
 import web.springboot.service.UserService;
+import web.springboot.service.UserServiceImpl;
 
 @Controller
 public class UserController {
@@ -13,7 +14,7 @@ public class UserController {
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
@@ -48,7 +49,7 @@ public class UserController {
 
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("user") User user) {
-        userService.addUser(user);
+        userService.update(user);
         return "redirect:/";
     }
 }
